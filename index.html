@@ -1,0 +1,78 @@
+  
+<!doctype html>
+<html>
+
+	<head>
+		<title>
+			NakkoBhulo.com
+		</title>
+	</head>
+	<body>
+		<h1 style="text-align:center;color:green">stuff yet to postpone:</h1>
+		<hr>
+
+			Add new task:<br>
+			
+			<input type="text" id="textfield"></input>
+
+			<button onclick="createNewTask()">ADD</button>
+			
+			<p id="ourlist">
+			
+			
+			</p>
+
+	</body>
+
+
+</html>
+
+
+ <script>
+	var item_no = 1;
+ 	function createNewTask()
+	{
+		var str = document.getElementById("textfield").value;
+		if(str == "")
+		{
+			alert("EMPTY STRING!!");
+		}
+		else
+		{
+			console.log(str);
+			var myTask = document.createElement("input");
+			myTask.type="checkbox"
+			myTask.setAttribute("id","number"+String(item_no));
+			
+			var cblabel = document.createElement("label");
+			cblabel.for = myTask.id;
+			cblabel.id = "lb"+String(item_no);
+			cblabel.innerHTML=str;
+			
+			
+			
+			cblabel.appendChild(myTask);
+			
+			var myClear = document.createElement("button");
+			myClear.innerHTML = "done";
+			myClear.setAttribute("id",String(item_no));
+			myClear.setAttribute("onclick","removeTask("+ String(item_no) + ")");
+			cblabel.appendChild(myClear);
+			
+			var newl=document.createElement("br");
+			document.getElementById('ourlist').appendChild(newl);
+			document.getElementById("ourlist").appendChild(cblabel);
+			//document.getElementById("ourlist").appendChild(myClear);
+			document.getElementById("textfield").value = "";
+			
+			item_no = Number(item_no);
+			item_no++;
+		}
+	}
+	function removeTask( id )
+	{
+		document.getElementById("number"+String(id)).remove();
+		document.getElementById("lb"+String(id)).remove();
+		document.getElementById(String(id)).remove();
+	}
+</script>
